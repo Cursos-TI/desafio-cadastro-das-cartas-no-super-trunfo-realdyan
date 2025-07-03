@@ -25,7 +25,7 @@ float PIB per Capita = PIB / populacao
 char estado1, estado2; // Variável para o estado (A a H)
 char codigoCarta1[4], codigoCarta2[4]; // Variável para o código da carta (ex: A01, B03)
 char cidade1[50], cidade2[50]; // Variável para o nome da cidade
-long int populacao1, populacao2;  // Variável para a população
+unsigned long int populacao1, populacao2;  // Variável para a população
 double area1, area2; // Variável para a área em km²
 double pib1, pib2; // Variável para o PIB
 int pontosTuristicos1, pontosTuristicos2; // Variavel para pontos turisticos
@@ -44,7 +44,7 @@ scanf("%s", codigoCarta1); // Le o código da carta da cidade 1
 printf("Nome da Cidade: Digite o nome da cidade. \n");
 scanf(" %[^\n]", cidade1); // Le o nome da cidade 1
 printf("População: Digite o número de habitantes da cidade. \n");
-scanf("%ld", &populacao1); // Le a população da cidade 1
+scanf("%lu", &populacao1); // Le a população da cidade 1
 printf("Área (em km²): Digite a área da cidade em quilômetros quadrados. \n");
 scanf("%lf", &area1); // Le a área da cidade 1
 printf("PIB: Digite o Produto Interno Bruto da cidade. \n");
@@ -64,7 +64,7 @@ scanf("%s", codigoCarta2); // Le o código da carta da cidade 2
 printf("Nome da Cidade: Digite o nome da cidade. \n");
 scanf(" %[^\n]", cidade2); // Le o nome da cidade 2
 printf("População: Digite o número de habitantes da cidade. \n");
-scanf("%ld", &populacao2); // Le a população da cidade 2
+scanf("%lu", &populacao2); // Le a população da cidade 2
 printf("Área (em km²): Digite a área da cidade em quilômetros quadrados. \n");
 scanf("%lf", &area2); // Le a área da cidade 2
 printf("PIB: Digite o Produto Interno Bruto da cidade. \n");
@@ -82,19 +82,23 @@ float densidadePopulacional2 = ((double)populacao2 / area2); // Declaração da 
 float PIBperCapita1 = ((pib1 * 1e9) / (double)populacao1); // Variavel e Calculo do PIB per Capita da Carta 1
 float PIBperCapita2 = ((pib2 * 1e9) / (double)populacao2); // Variavel e Calculo do PIB per Capita da Carta 2
 
+// Declarando Super Poder
+float superPoder1 = (float)populacao1 + (float)area1 + (float)pib1 + (float)pontosTuristicos1 + (float)PIBperCapita1 - (float)densidadePopulacional1; // Declaração e Calculo Super Poder da Carta 1
+float superPoder2 = (float)populacao2 + (float)area2 + (float)pib2 + (float)pontosTuristicos2 + (float)PIBperCapita2 - (float)densidadePopulacional2; // Declaração e Calculo Super Poder da Carta 2
+
 // Dados da Carta 1
 printf("\n");
 printf("Informações dos Dados da Carta 1:\n");
 printf("Estado: %c \n", estado1); // Mostra o  Estado 1
 printf("Código da Carta: %s \n", codigoCarta1); // Mostra o Código da Carta 1
 printf("Nome da Cidade: %s \n", cidade1); // Mostra o Nome da cidade da Carta 1
-printf("População: %ld habitantes \n", populacao1); // Mostra a população da Carta 1
+printf("População: %lu habitantes \n", populacao1); // Mostra a população da Carta 1
 printf("Área: %.2lf km² \n", area1); // Mostra o valor da area da Carta 1
 printf("PIB: %.2lf bilhões de reais\n", pib1); // Mostra o PIB da Carta 1
 printf("Número de Pontos Turísticos: %d \n", pontosTuristicos1); // Mostra a qtd de Pontos Turisticos da Carta 1
 printf("Densidade Populacional: %.2f \n", densidadePopulacional1); // Mostrar Densidade Populacional da Carta 1
 printf("PIB per Capita: %.2f \n", PIBperCapita1); // Mostra PIB per Capita da Carta 1
-printf("\n");
+printf("Super Poder: %.2f \n", superPoder1);  // Mostra Super Poder da Carta 1
 
 printf("\n");
 
@@ -104,14 +108,40 @@ printf("Informações dos Dados das Carta 2:\n");
 printf("Estado: %c \n", estado2); // Mostra o  Estado 2
 printf("Código da Carta: %s \n", codigoCarta2); // Mostra o Código da Carta 2
 printf("Nome da Cidade: %s \n", cidade2); // Mostra o Nome da cidade da Carta 2
-printf("População: %ld habitantes \n", populacao2); // Mostra a população da Carta 2
+printf("População: %lu habitantes \n", populacao2); // Mostra a população da Carta 2
 printf("Área: %.2lf km² \n", area2); // Mostra o tamanho da area da Carta 2
 printf("PIB: %.2lf bilhões de reais\n", pib2); // Mostra o PIB da Carta 2
 printf("Número de Pontos Turísticos: %d \n", pontosTuristicos2); // Mostra a qtd de Pontos Turisticos da Carta 2
 printf("Densidade Populacional: %.2f \n", densidadePopulacional2); // Mostrar Densidade Populacional da Carta 2
 printf("PIB per Capita: %.2f \n", PIBperCapita2); // Mostra PIB per Capita da Carta 2
+printf("Super Poder: %.2f \n", superPoder2); // Mostra Super Poder da Carta 2
 printf("\n");
 
+printf("\n");
+
+//Variaveis do Resultado das comnparacoes 
+int resultadoPopulacao = populacao1 > populacao2; // Variavel do resultado da comparação para população
+int resultadoArea = area1 > area2; // Variavel do resultado da comparação para Area
+int resultadoPib = pib1 > pib2; // Variavel do resultado da comparação para PIB
+int resultadopontosTuristicos = pontosTuristicos1 > pontosTuristicos2; // Variavel do  resultado da comparação para pontos turisticos
+int resultadodensidadePopulacional = densidadePopulacional1 < densidadePopulacional2; // Variavel do resultado da comparação para densidade populacional
+int resultadoPIBperCapita = PIBperCapita1 > PIBperCapita2; // Variavel do resultado da comparação para PIB per capita
+int resultadosuperPoder = superPoder1 > superPoder2; // Variavel do resultado da comparação para Super Poder
+
+
+// Resultado das Comparações das Cartas 
+printf("--------Comparações das Cartas--------\n");
+printf("(1).Carta 1 Venceu. \n");
+printf("(0).Carta 2 Venceu. \n");
+printf("\n");
+printf("População: %i \n", resultadoPopulacao); // Imprimir resultado da comparação para população
+printf("Área: %i \n", resultadoArea); // Imprimir resultado da comparação para Area
+printf("PIB: %i \n", resultadoPib); // Imprimir resultado da comparação para PIB
+printf("Pontos Turísticos: %i \n", resultadopontosTuristicos); // Imprimir resultado da comparação para pontos turisticos
+printf("Densidade Populacional: %i \n", resultadodensidadePopulacional); // Imprimir resultado da comparação para densidade populacional
+printf("PIB per Capita: %i \n", resultadoPIBperCapita); // Imprimir resultado da comparação para PIB per capita
+printf("Super Poder: %i \n", resultadosuperPoder); // // Imprimir resultado da comparação para Super Poder
+printf("-------- -------- -------- -------- --------\n");
 
 
 return 0;
